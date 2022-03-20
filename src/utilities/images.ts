@@ -1,10 +1,18 @@
 import sharp from 'sharp';
+import { promises as fs } from 'fs';
+import path from 'path';
 
 const resizeImage = async (
   imageName: string,
   width: number,
   height: number
 ) => {
+  try {
+    await fs.mkdir(process.cwd() + '/thumb', { recursive: true });
+  } catch (e) {
+    console.error(e);
+  }
+
   try {
     const inputPath = process.cwd() + '/full/' + imageName + '.jpg';
     const outputPath =
