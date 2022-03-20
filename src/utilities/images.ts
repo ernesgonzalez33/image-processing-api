@@ -7,7 +7,15 @@ const resizeImage = async (
 ) => {
   try {
     const inputPath = process.cwd() + '/full/' + imageName + '.jpg';
-    const outputPath = process.cwd() + '/thumb/' + imageName + '_thumb.jpg';
+    const outputPath =
+      process.cwd() +
+      '/thumb/' +
+      imageName +
+      '_thumb_' +
+      width +
+      '_' +
+      height +
+      '.jpg';
     await sharp(inputPath).resize(width, height).toFile(outputPath);
   } catch (error) {
     console.error(error);

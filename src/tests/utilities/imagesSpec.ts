@@ -5,7 +5,7 @@ describe('Testing the image resizing', () => {
   it('resizes the image and create the thumbnail', async () => {
     await resizeImage('encenadaport', 200, 200);
     const thumb = await fs.stat(
-      process.cwd() + '/thumb/encenadaport_thumb.jpg'
+      process.cwd() + '/thumb/encenadaport_thumb_200_200.jpg'
     );
     expect(thumb.isFile()).toBe(true);
   });

@@ -1,5 +1,6 @@
 import express from 'express';
 import resizeImage from '../../utilities/images';
+import { promises as fs } from 'fs';
 
 const images = express.Router();
 
@@ -9,13 +10,31 @@ images.get('/', async (req, res) => {
   const height = parseInt(req.query.height as string);
 
   if (filename !== undefined && width !== undefined && height !== undefined) {
-    try {
-      await resizeImage(filename as string, width as number, height as number);
-      const file = process.cwd() + '/thumb/' + filename + '_thumb.jpg';
+    const file =
+      process.cwd() +
+      '/thumb/' +
+      filename +
+      '_thumb_' +
+      width +
+      '_' +
+      height +
+      '.jpg';
 
+    try {
+      await fs.stat(file);
       await res.sendFile(file);
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      try {
+        await resizeImage(
+          filename as string,
+          width as number,
+          height as number
+        );
+
+        await res.sendFile(file);
+      } catch (e) {
+        console.error(e);
+      }
     }
   } else {
     res.send('Please create a query to use this service');
