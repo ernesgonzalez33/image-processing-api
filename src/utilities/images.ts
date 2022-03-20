@@ -1,6 +1,5 @@
 import sharp from 'sharp';
 import { promises as fs } from 'fs';
-import path from 'path';
 
 const resizeImage = async (
   imageName: string,
