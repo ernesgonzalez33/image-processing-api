@@ -23,6 +23,7 @@ images.get('/', async (req, res) => {
     try {
       await fs.stat(file);
       await res.sendFile(file);
+      console.log('Image accessed!');
     } catch (error) {
       try {
         await resizeImage(
@@ -30,7 +31,7 @@ images.get('/', async (req, res) => {
           width as number,
           height as number
         );
-
+        console.log('Image resized!');
         await res.sendFile(file);
       } catch (e) {
         console.error(e);
