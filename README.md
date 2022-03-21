@@ -26,7 +26,7 @@ node dist/.
 
 The images you can use are in the `full` directory. To process them you just have to go to the following page:
 
-`http://localhost:3000/api/images?filename=\<imagename\>&width=\<width\>&height=\<height\>`
+`http://localhost:3000/api/images?filename=<imagename>&width=<width>&height=<height>`
 
 for example:
 
