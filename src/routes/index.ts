@@ -1,9 +1,9 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import images from './api/images';
 
 const routes = express.Router();
 
-routes.get('/', (req, res) => {
+routes.get('/', (req: Request, res: Response) => {
   res.send(
     'Welcome to the main api page. Nothing to see here. Use "/api/images" to scale images'
   );

@@ -5,7 +5,7 @@ const resizeImage = async (
   imageName: string,
   width: number,
   height: number
-) => {
+): Promise<void> => {
   try {
     await fs.mkdir(process.cwd() + '/thumb', { recursive: true });
   } catch (e) {

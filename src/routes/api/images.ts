@@ -1,11 +1,11 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import resizeImage from '../../utilities/images';
 import { promises as fs } from 'fs';
 
 const images = express.Router();
 
-images.get('/', async (req, res) => {
-  const filename = req.query.filename;
+images.get('/', async (req: Request, res: Response) => {
+  const filename: string = req.query.filename as string;
   const width: number = parseInt(req.query.width as string);
   const height: number = parseInt(req.query.height as string);
 
