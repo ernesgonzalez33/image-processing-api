@@ -23,6 +23,11 @@ const resizeImage = async (
       '_' +
       height +
       '.jpg';
+    try {
+      await fs.stat(inputPath);
+    } catch (error) {
+      return Promise.reject('There is no image with that name');
+    }
     await sharp(inputPath).resize(width, height).toFile(outputPath);
   } catch (error) {
     console.error(error);

@@ -6,10 +6,20 @@ const images = express.Router();
 
 images.get('/', async (req, res) => {
   const filename = req.query.filename;
-  const width = parseInt(req.query.width as string);
-  const height = parseInt(req.query.height as string);
+  const width: number = parseInt(req.query.width as string);
+  const height: number = parseInt(req.query.height as string);
 
-  if (filename !== undefined && width !== undefined && height !== undefined) {
+  if (isNaN(width) || isNaN(height)) {
+    res.statusMessage = 'Width and Height should be numbers';
+    res.status(400).end();
+  } else if (width < 0 || height < 0) {
+    res.statusMessage = 'Width and Height should be integers';
+    res.status(400).end();
+  } else if (
+    filename !== undefined &&
+    width !== undefined &&
+    height !== undefined
+  ) {
     const file =
       process.cwd() +
       '/thumb/' +
@@ -37,8 +47,6 @@ images.get('/', async (req, res) => {
         console.error(e);
       }
     }
-  } else {
-    res.send('Please create a query to use this service');
   }
 });
 

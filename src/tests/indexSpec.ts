@@ -14,15 +14,17 @@ describe('Test endpoints', () => {
     expect(res.status).toBe(200);
   });
 
-  it('gets the images endpoint', async () => {
-    const res = await req.get('/api/images');
-    expect(res.status).toBe(200);
-  });
-
   it('returns 200 while resizing an image', async () => {
     const res = await req.get(
       '/api/images?filename=fjord&width=200&height=200'
     );
     expect(res.status).toBe(200);
+  });
+
+  it('fails when the width is not a number', async () => {
+    const res = await req.get(
+      '/api/images?filename=fjord&width=NaN&height=200'
+    );
+    expect(res.status).toBe(400);
   });
 });
