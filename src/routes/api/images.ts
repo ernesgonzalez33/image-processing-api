@@ -9,17 +9,17 @@ images.get('/', async (req: Request, res: Response) => {
   const width: number = parseInt(req.query.width as string);
   const height: number = parseInt(req.query.height as string);
 
-  if (isNaN(width) || isNaN(height)) {
+  if (Object.keys(req.query).length === 0) {
+    res.send('Please provide a valid query to use this service');
+  } else if (isNaN(width) || isNaN(height)) {
     res.statusMessage = 'Width and Height should be numbers';
-    res.status(400).end();
+    res.status(400);
+    res.send('Width and Height should be numbers');
   } else if (width < 0 || height < 0) {
     res.statusMessage = 'Width and Height should be integers';
-    res.status(400).end();
-  } else if (
-    filename !== undefined &&
-    width !== undefined &&
-    height !== undefined
-  ) {
+    res.status(400);
+    res.send('Width and Height should be integers');
+  } else {
     const file =
       process.cwd() +
       '/thumb/' +
