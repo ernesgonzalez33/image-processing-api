@@ -49,7 +49,7 @@ describe('Error handling of endpoints', () => {
     expect(res.status).toBe(400);
   });
 
-  it('fails when the width is not an integer', async () => {
+  it('fails when the height is not an integer', async () => {
     const res = await req.get(
       '/api/images?filename=fjord&width=200&height=-200'
     );

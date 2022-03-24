@@ -3,7 +3,7 @@ import images from './api/images';
 
 const routes = express.Router();
 
-routes.get('/', (req: Request, res: Response) => {
+routes.get('/', (req: Request, res: Response): void => {
   res.send(
     'Welcome to the main api page. Nothing to see here. Use "/api/images" to scale images'
   );
