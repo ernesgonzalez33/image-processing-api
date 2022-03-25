@@ -42,6 +42,11 @@ describe('Error handling of endpoints', () => {
     expect(res.status).toBe(400);
   });
 
+  it('fails when the width is zero', async () => {
+    const res = await req.get('/api/images?filename=fjord&width=200&height=0');
+    expect(res.status).toBe(400);
+  });
+
   it('fails when the height is not a number', async () => {
     const res = await req.get(
       '/api/images?filename=fjord&width=200&height=test'
@@ -53,6 +58,11 @@ describe('Error handling of endpoints', () => {
     const res = await req.get(
       '/api/images?filename=fjord&width=200&height=-200'
     );
+    expect(res.status).toBe(400);
+  });
+
+  it('fails when the height is zero', async () => {
+    const res = await req.get('/api/images?filename=fjord&width=200&height=0');
     expect(res.status).toBe(400);
   });
 });

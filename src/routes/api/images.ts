@@ -15,10 +15,10 @@ images.get('/', async (req: Request, res: Response): Promise<void> => {
     res.statusMessage = 'Width and Height should be numbers';
     res.status(400);
     res.send('Width and Height should be numbers');
-  } else if (width < 0 || height < 0) {
-    res.statusMessage = 'Width and Height should be integers';
+  } else if (width <= 0 || height <= 0) {
+    res.statusMessage = 'Width and Height should be more than zero';
     res.status(400);
-    res.send('Width and Height should be integers');
+    res.send('Width and Height should be more than zero');
   } else {
     const file =
       process.cwd() +
