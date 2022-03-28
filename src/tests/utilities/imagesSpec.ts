@@ -10,7 +10,7 @@ describe('Testing the image resizing', () => {
     expect(thumb.isFile()).toBe(true);
   });
 
-  it('fails when the image does not exist', async () => {
+  it('promise is rejected when the image does not exist', async () => {
     await expectAsync(resizeImage('notHere', 200, 200)).toBeRejected();
   });
 });

@@ -44,7 +44,9 @@ images.get('/', async (req: Request, res: Response): Promise<void> => {
         console.log('Image resized!');
         await res.sendFile(file);
       } catch (e) {
-        console.error(e);
+        res.statusMessage = "That image doesn't exist";
+        res.status(400);
+        res.send("That image doesn't exist");
       }
     }
   }
