@@ -2,7 +2,7 @@
 
 Repository with an Image Processing API built for Full Stack JavaScript Nanodegree at Udacity.
 
-## How to run
+## How to run in local
 
 To only build the code:
 
@@ -20,6 +20,26 @@ And to run the server after building the code:
 
 ```
 node dist/.
+```
+
+## How to create a Docker image
+
+Run the following to build the image:
+
+```
+podman build . -t ernesgonzalez33/image-processing-api
+```
+
+To run the image:
+
+```
+podman run -p 3000:3000 localhost/ernesgonzalez33/image-processing-api
+```
+
+Alternatively, you can pull it from Quay:
+
+```
+podman pull quay.io/ernesgonzalez33/image-processing-api
 ```
 
 ## How to use the image processing api
